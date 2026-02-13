@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Secure Ticketing') </title>
+    <title>@yield('title', 'Secure Ticketing') - SMK Wikrama Bogor</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +47,7 @@
         .navbar {
             background-color: var(--bg-primary) !important;
             border-bottom: 1px solid var(--border-color);
-            padding: 1rem 0;
+            padding: 0.75rem 0;
             box-shadow: none;
         }
 
@@ -76,11 +75,20 @@
             color: var(--text-primary) !important;
         }
 
+        .navbar-toggler {
+            border: 1px solid var(--border-color);
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
         .dropdown-menu {
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             border-radius: 8px;
             padding: 0.5rem;
+            margin-top: 0.5rem;
         }
 
         .dropdown-item {
@@ -88,15 +96,42 @@
             padding: 0.5rem 0.75rem;
             font-size: 14px;
             color: var(--text-primary);
+            transition: background-color 0.15s ease;
         }
 
         .dropdown-item:hover {
             background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .dropdown-item.text-danger {
+            color: #dc2626 !important;
+        }
+
+        .dropdown-item.text-danger:hover {
+            background-color: #fef2f2;
+        }
+
+        .dropdown-item.text-success {
+            color: #16a34a !important;
+        }
+
+        .dropdown-item.text-success:hover {
+            background-color: #f0fdf4;
         }
 
         .dropdown-divider {
             margin: 0.5rem 0;
             border-color: var(--border-color);
+        }
+
+        .dropdown-header {
+            padding: 0.5rem 0.75rem;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         /* Cards */
@@ -130,6 +165,11 @@
             border: 1px solid transparent;
         }
 
+        .btn-sm {
+            padding: 0.375rem 0.75rem;
+            font-size: 13px;
+        }
+
         .btn-primary {
             background-color: var(--accent-color);
             border-color: var(--accent-color);
@@ -161,16 +201,20 @@
 
         .btn-secondary:hover {
             background-color: #e5e5e5;
+            border-color: var(--border-color);
+            color: var(--text-primary);
         }
 
         .btn-outline-secondary {
             color: var(--text-secondary);
             border-color: var(--border-color);
+            background-color: transparent;
         }
 
         .btn-outline-secondary:hover {
             background-color: var(--hover-bg);
             color: var(--text-primary);
+            border-color: var(--border-color);
         }
 
         .btn-danger {
@@ -186,11 +230,49 @@
         .btn-outline-danger {
             color: #dc2626;
             border-color: var(--border-color);
+            background-color: transparent;
         }
 
         .btn-outline-danger:hover {
             background-color: #fee;
             border-color: #dc2626;
+            color: #dc2626;
+        }
+
+        .btn-success {
+            background-color: #16a34a;
+            border-color: #16a34a;
+        }
+
+        .btn-success:hover {
+            background-color: #15803d;
+            border-color: #15803d;
+        }
+
+        .btn-info {
+            background-color: #0891b2;
+            border-color: #0891b2;
+        }
+
+        .btn-info:hover {
+            background-color: #0e7490;
+            border-color: #0e7490;
+        }
+
+        .btn-warning {
+            background-color: #f59e0b;
+            border-color: #f59e0b;
+            color: #000;
+        }
+
+        .btn-warning:hover {
+            background-color: #d97706;
+            border-color: #d97706;
+            color: #000;
+        }
+
+        .btn-close {
+            filter: invert(1);
         }
 
         /* Forms */
@@ -257,6 +339,12 @@
             color: #1e40af;
         }
 
+        .alert-warning {
+            background-color: #fef3c7;
+            border-color: #fde68a;
+            color: #92400e;
+        }
+
         /* Badges */
         .badge {
             font-weight: 500;
@@ -266,15 +354,46 @@
             letter-spacing: 0.01em;
         }
 
+        .badge.bg-warning {
+            background-color: #fef3c7 !important;
+            color: #92400e !important;
+            border: 1px solid #fde68a;
+        }
+
+        .badge.bg-info {
+            background-color: #dbeafe !important;
+            color: #1e40af !important;
+            border: 1px solid #bfdbfe;
+        }
+
+        .badge.bg-success {
+            background-color: #dcfce7 !important;
+            color: #166534 !important;
+            border: 1px solid #bbf7d0;
+        }
+
+        .badge.bg-secondary {
+            background-color: #f5f5f5 !important;
+            color: #525252 !important;
+            border: 1px solid #e5e5e5;
+        }
+
+        .badge.bg-danger {
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+            border: 1px solid #fecaca;
+        }
+
+        .badge.bg-primary {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+
         /* Typography */
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
+        h1, h2, h3, h4, h5, h6 {
             font-weight: 600;
             letter-spacing: -0.02em;
+            color: var(--text-primary);
         }
 
         .h3 {
@@ -320,6 +439,21 @@
             background-color: var(--bg-secondary) !important;
         }
 
+        /* Code Blocks */
+        pre {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        pre code {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+        }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -338,18 +472,65 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--text-muted);
         }
+
+        /* Ticket Specific Styles */
+        .ticket-item {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.15s ease;
+        }
+
+        .ticket-item:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .ticket-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Empty State */
+        .empty-state {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 14px;
+            }
+
+            .nav-link {
+                font-size: 13px;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .btn {
+                font-size: 13px;
+                padding: 0.45rem 0.875rem;
+            }
+        }
     </style>
 
+    {{-- Stack untuk CSS tambahan per halaman --}}
     @stack('styles')
 </head>
-
 <body>
     {{-- ============================================ --}}
     {{-- NAVIGATION --}}
     {{-- ============================================ --}}
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/tickets') }}">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 <i class="bi bi-shield-lock"></i> Secure Ticketing
             </a>
 
@@ -359,32 +540,92 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
+                    {{-- Tickets --}}
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('tickets.*') ? 'active' : '' }}"
-                            href="{{ route('tickets.index') }}">
-                            Tickets
+                           href="{{ route('tickets.index') }}">
+                            <i class="bi bi-ticket-detailed"></i> Tickets
                         </a>
+                    </li>
+
+                    {{-- Demo Blade (Hari 4) --}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs('demo-blade.*') ? 'active' : '' }}"
+                           href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-code-slash"></i> Demo Blade
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('demo-blade.index') }}">
+                                <i class="bi bi-house"></i> Overview
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ route('demo-blade.directives') }}">
+                                <i class="bi bi-signpost-split"></i> Directives
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ route('demo-blade.components') }}">
+                                <i class="bi bi-puzzle"></i> Components
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ route('demo-blade.includes') }}">
+                                <i class="bi bi-box-arrow-in-right"></i> Include & Each
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ route('demo-blade.stacks') }}">
+                                <i class="bi bi-stack"></i> Stacks & Push
+                            </a></li>
+                        </ul>
+                    </li>
+
+                    {{-- XSS Lab (Hari 4) --}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs('xss-lab.*') ? 'active' : '' }}"
+                           href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-shield-exclamation"></i> XSS Lab
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('xss-lab.index') }}">
+                                <i class="bi bi-house"></i> Overview
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="dropdown-header">Reflected XSS</li>
+                            <li><a class="dropdown-item text-danger" href="{{ route('xss-lab.reflected.vulnerable') }}">
+                                <i class="bi bi-unlock"></i> Vulnerable
+                            </a></li>
+                            <li><a class="dropdown-item text-success" href="{{ route('xss-lab.reflected.secure') }}">
+                                <i class="bi bi-lock"></i> Secure
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="dropdown-header">Stored XSS</li>
+                            <li><a class="dropdown-item text-danger" href="{{ route('xss-lab.stored.vulnerable') }}">
+                                <i class="bi bi-unlock"></i> Vulnerable
+                            </a></li>
+                            <li><a class="dropdown-item text-success" href="{{ route('xss-lab.stored.secure') }}">
+                                <i class="bi bi-lock"></i> Secure
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="dropdown-header">DOM-Based XSS</li>
+                            <li><a class="dropdown-item text-danger" href="{{ route('xss-lab.dom.vulnerable') }}">
+                                <i class="bi bi-unlock"></i> Vulnerable
+                            </a></li>
+                            <li><a class="dropdown-item text-success" href="{{ route('xss-lab.dom.secure') }}">
+                                <i class="bi bi-lock"></i> Secure
+                            </a></li>
+                        </ul>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            {{ Auth::user()->name ?? 'Guest' }}
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> User Demo
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">
-                                        Logout
-                                    </button>
-                                </form>
-                            </li>
+                            <li><a class="dropdown-item" href="#">
+                                <i class="bi bi-person"></i> Profile
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -397,26 +638,26 @@
     {{-- ============================================ --}}
     <main class="container py-4">
         {{-- Flash Messages --}}
-        @if (session('success'))
+        @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
+                <i class="bi bi-check-circle"></i> {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
 
-        @if (session('error'))
+        @if(session('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
+                <i class="bi bi-exclamation-triangle"></i> {{ session('error') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
 
         {{-- Validation Errors --}}
-        @if ($errors->any())
+        @if($errors->any())
             <div class="alert alert-danger">
-                <strong>Terjadi kesalahan:</strong>
+                <i class="bi bi-exclamation-triangle"></i> <strong>Terjadi kesalahan:</strong>
                 <ul class="mb-0 mt-2">
-                    @foreach ($errors->all() as $error)
+                    @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -444,7 +685,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    {{-- Stack untuk JavaScript tambahan per halaman --}}
     @stack('scripts')
 </body>
-
 </html>
