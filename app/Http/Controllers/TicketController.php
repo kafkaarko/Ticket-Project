@@ -2,15 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTicketRequest;
+use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Ticket;
+use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\View\View;
 
 class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    use AuthorizesRequests;
+    public function index(Request $request)
     {
         //
     $this->authorize('viewAny', Ticket::class);
@@ -54,14 +63,14 @@ class TicketController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTicketRequest $request)
     {
         //
-        $this->authorize('create', Ticket::class);
-        $validate = $request->validate();
+        // $this->authorize('create', Ticket::class);
+        $validate = $request->validated();
 
         $validate['user_id'] = auth()->id();
-        $validated['status'] = 'open'
+        $validated['status'] = 'open';
         $tickte = Ticket::create($validate);
         return redirect()->route('tickets.index')->with('success', 'Ticket created successfully.');
     }

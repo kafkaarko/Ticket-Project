@@ -23,7 +23,7 @@ class LoginController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function showLoginForm(): View
     {
         return view('auth.login', [
             'isSecure' => true,
@@ -37,7 +37,7 @@ class LoginController extends Controller
      * 1. LoginRequest handles validation + rate limiting
      * 2. Session regeneration mencegah session fixation
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function login(LoginRequest $request): RedirectResponse
     {
         // Authenticate (dengan rate limiting dari LoginRequest)
         $request->authenticate();
@@ -57,7 +57,7 @@ class LoginController extends Controller
      * 2. Token regeneration
      * 3. Complete logout flow
      */
-    public function destroy(Request $request): RedirectResponse
+    public function logout(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
 

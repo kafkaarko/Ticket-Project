@@ -9,24 +9,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-/**
- * Vulnerable Login Controller
- * 
- * ⚠️ PERINGATAN: Controller ini SENGAJA TIDAK AMAN!
- * Hanya untuk pembelajaran - JANGAN gunakan di production!
- * 
- * VULNERABILITIES:
- * 1. ❌ Tidak ada rate limiting
- * 2. ❌ Tidak ada session regeneration
- * 3. ❌ Password di-compare plaintext
- * 4. ❌ Tidak ada proper validation
- * 5. ❌ Session tidak di-invalidate dengan benar
- */
+
 class VulnerableLoginController extends Controller
 {
-    /**
-     * Display the vulnerable login view.
-     */
+
     public function create(): View
     {
         // Hitung login attempts untuk demo
